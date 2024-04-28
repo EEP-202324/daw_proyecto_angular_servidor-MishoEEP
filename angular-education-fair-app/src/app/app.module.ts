@@ -5,11 +5,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SchoolsComponent } from './schools/schools.component';
 import { FormsModule } from '@angular/forms';
+import { SchoolDetailComponent } from './school-detail/school-detail.component';
+import { MessagesComponent } from './messages/messages.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SchoolsComponent,
+    SchoolDetailComponent,
+    MessagesComponent,
 
   ],
   imports: [
