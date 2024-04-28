@@ -11,26 +11,20 @@ import { MessageService } from '../message.service';
 })
 
 export class SchoolsComponent implements OnInit{
-  selectedSchool?: School;
-  schools: School[] = [];
+
+   schools: School[] = [];
 
   constructor(private schoolService: SchoolService, private messageService: MessageService) {}
 
 
-ngOnInit(): void {
-  this.getSchools();
-}
+  ngOnInit(): void {
+    this.getSchools();
+  }
 
-onSelect(school: School): void {
-  this.selectedSchool = school;
-  this.messageService.add(`SchoolsComponent: Selected school id=${school.id}`);
-}
-
-getSchools(): void {
-  this.schoolService.getSchools()
-    .subscribe(schools => this.schools = schools);
-}
-
+  getSchools(): void {
+    this.schoolService.getSchools()
+      .subscribe(schools => this.schools = schools);
+  }
 
 
 }

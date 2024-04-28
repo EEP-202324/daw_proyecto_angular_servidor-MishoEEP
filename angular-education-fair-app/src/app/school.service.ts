@@ -16,4 +16,12 @@ export class SchoolService {
     return schools;
   }
 
+  getSchool(id: number): Observable<School> {
+    // For now, assume that a hero with the specified `id` always exists.
+    // Error handling will be added in the next step of the tutorial.
+    const school = SCHOOLS.find(h => h.id === id)!;
+    this.messageService.add(`SchoolService: fetched school id=${id}`);
+    return of(school);
+  }
+
 }

@@ -1,0 +1,8 @@
+
+<h2>Top Schools</h2>
+<div class="schools-menu">
+  <a *ngFor="let school of schools"
+    routerLink="/detail/{{school.id}}">
+    {{school.name}}
+  </a>
+</div>

@@ -6,3 +6,6 @@ The application is about Education fair, showin the best schools of Madrid.
 4. Making a (injectable) school service to fetch/save data.
 5. Adding a an Observable so it can fetch data asynchronously (using HttpClient.get())
 6. Adding a MessageComponent to display app messages at the bottom of the screen. Injecting messageService into schoolService.
+7. Adding routing to the app.
+8. Generating Dashboard. Connecting routing with details, dashboard, and schools.
+9. Navigation is also added, browser buttons forrward and back function, also there is button to "go back" from details.
