@@ -1,0 +1,18 @@
+<h2>Top Schools</h2>
+<ul class="schools">
+  <li *ngFor="let school of schools">
+    <button type="button" [class.selected]="school === selectedSchool" (click)="onSelect(school)">
+      <span class="badge">{{school.id}}</span>
+      <span class="name">{{school.name}}</span>
+    </button>
+  </li>
+</ul>
+
+<div *ngIf="selectedSchool">
+  <h2>{{selectedSchool.name | uppercase}} Details</h2>
+  <div>id: {{selectedSchool.id}}</div>
+  <div>
+    <label for="hero-name">School name: </label>
+    <input id="hero-name" [(ngModel)]="selectedSchool.name" placeholder="name">
+  </div>
+</div>
