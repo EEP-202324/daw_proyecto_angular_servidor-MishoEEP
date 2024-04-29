@@ -1,3 +1,4 @@
+
 <div *ngIf="school">
   <h2>{{school.name | uppercase}} Details</h2>
   <div><span>id: </span>{{school.id}}</div>
@@ -5,5 +6,5 @@
     <label for="school-name">School name: </label>
     <input id="school-name" [(ngModel)]="school.name" placeholder="name">
   </div>
-  <button type="button" (click)="goBack()">go back</button>
+  <button type="button" (click)="goBack()">Back</button>
 </div>
