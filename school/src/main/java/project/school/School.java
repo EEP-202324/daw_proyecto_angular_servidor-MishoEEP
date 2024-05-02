@@ -1,11 +1,11 @@
 package project.school;
 
 public class School {
-	private int id;
-	private String name;
-	private String city;
-	private String rating;
-	
+	 private int id;
+	 private String name;
+	 private String city;
+	 private String rating;
+	 
 	public School(int id, String name, String city, String rating) {
 		super();
 		this.id = id;
@@ -45,8 +45,7 @@ public class School {
 	public void setRating(String rating) {
 		this.rating = rating;
 	}
+	 
 	
-	
-	
-	
+	 
 }
