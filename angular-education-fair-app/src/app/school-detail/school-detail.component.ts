@@ -4,6 +4,7 @@ import { School } from '../school';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { SchoolService } from '../school.service';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -32,5 +33,12 @@ export class SchoolDetailComponent {
 
   goBack(): void {
     this.location.back();
+  }
+
+  save(): void {
+    if (this.school) {
+      this.schoolService.upadateSchool(this.school)
+        .subscribe(() => this.goBack());
+    }
   }
 }

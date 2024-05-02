@@ -9,6 +9,9 @@ import { SchoolDetailComponent } from './school-detail/school-detail.component';
 import { MessagesComponent } from './messages/messages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './in-memory-data.service';
+import { SchoolSearchComponent } from './school-search/school-search.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
     SchoolDetailComponent,
     MessagesComponent,
     DashboardComponent,
+    SchoolSearchComponent,
 
   ],
   imports: [
@@ -24,6 +28,9 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, { dataEncapsulation: false }
+    ),
   ],
   providers: [
     provideClientHydration()

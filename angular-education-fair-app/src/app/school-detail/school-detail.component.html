@@ -1,10 +1,21 @@
-
-<div *ngIf="school">
+<div *ngIf="school" class="details">
   <h2>{{school.name | uppercase}} Details</h2>
-  <div><span>id: </span>{{school.id}}</div>
-  <div>
-    <label for="school-name">School name: </label>
-    <input id="school-name" [(ngModel)]="school.name" placeholder="name">
+  <div class="info-group">
+    <span class="label">ID:</span>
+    <span class="info">{{school.id}}</span>
+  </div>
+  <div class="info-group">
+    <label for="school-name">School name:</label>
+    <input id="school-name" [(ngModel)]="school.name" placeholder="School name"/>
+  </div>
+  <div class="info-group">
+    <label for="school-city">City:</label>
+    <input id="school-city" [(ngModel)]="school.city" placeholder="City"/>
+  </div>
+  <div class="info-group">
+    <label for="school-rating">Rating:</label>
+    <input id="school-rating" [(ngModel)]="school.rating" placeholder="Rating" type="number"/>
   </div>
   <button type="button" (click)="goBack()">Back</button>
+  <button type="button" (click)="save()">Save</button>
 </div>

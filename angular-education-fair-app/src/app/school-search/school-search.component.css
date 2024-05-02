@@ -1,0 +1,50 @@
+#search-component {
+  display: block;
+  width: 100%;
+  max-width: 600px; /* Limit the maximum width to align with the input's max-width */
+  margin: 2em auto; /* Centers the component horizontally and adds vertical spacing */
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  margin-bottom: .5rem;
+  text-align: center; /* Center the label text */
+}
+
+input {
+  padding: .5rem;
+  width: 100%;
+  box-sizing: border-box;
+  display: block;
+  margin: 0 auto; /* Center the input within the component */
+}
+
+input:focus {
+  outline: #336699 auto 1px;
+}
+
+ul.search-result {
+  list-style-type: none; /* No bullet points */
+  padding: 0;
+  margin: 0 auto; /* Center the list */
+  width: 100%;
+  max-width: 600px; /* Maintain the max-width for consistency */
+}
+
+.search-result li a {
+  border: 1px solid gray; /* Unified border style for simplicity */
+  display: block; /* Use block to allow the width to expand fully */
+  padding: .5rem;
+  text-decoration: none;
+  color: black;
+  text-align: left; /* Ensures text alignment within each list item */
+}
+
+.search-result li a:hover {
+  background-color: #435A60;
+  color: white;
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}

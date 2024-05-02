@@ -1,54 +1,151 @@
 /* HeroesComponent's private CSS styles */
+
 .schools {
-  margin: 0 0 2em 0;
+  margin: 2em auto; /* Center the list in the page and provide top and bottom margin */
   list-style-type: none;
   padding: 0;
-  width: 15em;
+  width: 100%;
+  max-width: 500px; /* Maximum width to align with the form fields in the detail view */
 }
+
 .schools li {
-  position: relative;
+  margin-bottom: 0.5rem; /* Adds space between list items */
   cursor: pointer;
+  background-color: #f9f9f9; /* Background color for each list item */
+  border: 2px solid #cfd8dc; /* Border style to match detail view inputs */
+  border-radius: 4px; /* Rounded corners for visual consistency */
+  transition: background-color 0.3s; /* Smooth transition for hover effects */
 }
 
 .schools li:hover {
-  left: .1em;
+  background-color: #cfd8dc; /* Consistent hover effect as the button in the detail view */
 }
 
 .schools a {
-  color: #333;
+  color: #435960; /* Text color consistent with the form labels */
   text-decoration: none;
-  background-color: #EEE;
-  margin: .5em;
-  padding: .3em 0;
-  height: 1.6em;
-  border-radius: 4px;
-  display: block;
-  width: 100%;
+  display: flex;
+  align-items: center; /* Centers items vertically within the list item */
+  padding: 0.5em;
+  width: 100%; /* Full width within the list item */
 }
 
 .schools a:hover {
-  color: #2c3a41;
-  background-color: #e6e6e6;
+  background-color: transparent; /* Maintain the li hover effect */
+  color: #2c3a41; /* Darken text on hover for better readability */
 }
 
 .schools a:active {
-  background-color: #525252;
-  color: #fafafa;
+  background-color: transparent; /* Maintain visual consistency on active state */
+  color: #fafafa; /* Ensures text is readable on active state */
 }
 
 .schools .badge {
   display: inline-block;
-  font-size: small;
+  font-size: 0.9em; /* Adjusted to better fit the design */
+  color: #fafafa; /* Light text color for readability */
+  background-color: #405061; /* Consistent badge color with detail view styling */
+  padding: 0.3em 0.7em;
+  border-radius: 4px; /* Fully rounded corners for consistency */
+  margin-right: 0.5em; /* Space between badge and name */
+}
+
+.schools .name {
+  flex: 1; /* Allows the name to fill the available space */
+  padding-left: 0.5em; /* Aesthetically pleasing padding */
+}
+
+h2 {
+  text-align: center;
+}
+
+/* Delete button styles */
+.delete {
+  padding: 0.3rem 0.6rem;  /* Adequate padding for accessibility */
+  margin-left: 1rem;       /* Space between the school name and button */
+  background-color: #3f525c; /* Consistent with the link background in DashboardComponent */
+  color: white;            /* Maintains high contrast for readability */
+  border: none;            /* Clean and modern appearance */
+  border-radius: 2px;      /* Rounded corners matching DashboardComponent links */
+  cursor: pointer;         /* Indicates that the button is clickable */
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.2); /* Subtle shadow for depth */
+  transition: background-color 0.3s; /* Smooth transition for color changes */
+}
+
+.delete:hover {
+  background-color: #000; /* Darker shade on hover, consistent with DashboardComponent links */
+}
+
+/* Align items in the list item */
+li {
+  display: flex;           /* Flexbox for alignment */
+  align-items: center;     /* Align items vertically */
+  justify-content: space-between; /* Space between name and delete button */
+}
+
+/* Badge and name styling for consistency and alignment */
+.badge {
+  background-color: #eee;
+  padding: 0.2rem 0.6rem;
+  margin-right: 0.5rem;
+  border-radius: 2px;
+  font-weight: bold;
+}
+
+.name {
+  flex-grow: 1;            /* Allows name to take up remaining space */
+}
+
+/* Center the container and style it similarly to the list items */
+div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+  margin: 2em auto;
+  padding: 1em;
+  background-color: #f9f9f9;
+  border: 2px solid #cfd8dc;
+  border-radius: 4px;
+}
+
+/* Styling for each form row */
+div > div {
+  display: flex;
+  justify-content: flex-start; /* Align items to the start for left alignment */
+  width: 100%;
+  margin-bottom: 0.5rem; /* Space between rows */
+}
+
+/* Label styling */
+label {
+  font-weight: bold;
+  color: #435960;
+  margin-right: 10px; /* Space between label and input */
+  white-space: nowrap; /* Prevents label from wrapping */
+  flex-shrink: 0; /* Prevents label from shrinking */
+}
+
+/* Input field styling */
+input {
+  flex-grow: 1; /* Allows input to take remaining space */
+  padding: 0.5em;
+  border: 2px solid #cfd8dc;
+  border-radius: 4px;
+}
+
+/* Styling the button to match the delete button in the list */
+button.add-button {
+  padding: 0.5rem 1rem;
+  background-color: #3f525c;
   color: white;
-  padding: 0.8em 0.7em 0 0.7em;
-  background-color: #405061;
-  line-height: 1em;
-  position: relative;
-  left: -1px;
-  top: -4px;
-  height: 1.8em;
-  min-width: 16px;
-  text-align: right;
-  margin-right: .8em;
-  border-radius: 4px 0 0 4px;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button.add-button:hover {
+  background-color: #000;
 }

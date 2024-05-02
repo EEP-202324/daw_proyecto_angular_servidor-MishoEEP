@@ -11,7 +11,9 @@ ANGULAR:
 7. 	Adding routing to the app.
 8. 	Generating Dashboard. Connecting routing with details, dashboard, and schools.
 9. 	Navigation is also added, browser buttons forrward and back function, also there is button to "go back" from details.
-<!-- 10.	Adding HttpClientModule and simulating a data server with angular-in-memory-web-api -->
+10.	Adding HttpClientModule and simulating a data server with angular-in-memory-web-api so I can make sure everything funcions as it should.
+11.	Adding error handling, also editing the get methods for shchools so they use http requests.
+12. Adding options to update/add/delete and search for schools.
 
 
 SPRING:
