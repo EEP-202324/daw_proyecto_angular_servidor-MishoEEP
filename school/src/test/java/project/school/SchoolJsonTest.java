@@ -17,7 +17,7 @@ class SchoolJsonTest {
 	
 	 @Test
 	    void schoolSerializationTest() throws IOException {
-	        School school = new School(1, "EEP", "Madrid", "7");
+	        School school = new School(1L, "EEP", "Madrid", "7");
 	        assertThat(json.write(school)).isStrictlyEqualToJson("expected.json");
 	        assertThat(json.write(school)).hasJsonPathNumberValue("@.id");
 	        assertThat(json.write(school)).extractingJsonPathNumberValue("@.id")
@@ -32,4 +32,21 @@ class SchoolJsonTest {
 			assertThat(json.write(school)).extractingJsonPathStringValue("@.rating")
 				.isEqualTo("7");
 	    }
+	 
+	 @Test
+	 void schoolDeserializationTest() throws IOException {
+	     String expected = """
+	             {
+	                 "id": 1,
+	     		    "name": "EEP",
+	     		    "city": "Madrid",
+	     			"rating": "7"
+	             }
+	             """;
+	     School parsedSchool = json.parseObject(expected);
+	     assertThat(parsedSchool.getId()).isEqualTo(1);
+	     assertThat(parsedSchool.getName()).isEqualTo("EEP");
+	     assertThat(parsedSchool.getCity()).isEqualTo("Madrid");
+	     assertThat(parsedSchool.getRating()).isEqualTo("7");
+	 }
 }

@@ -1,12 +1,24 @@
 package project.school;
 
+
+
+import jakarta.annotation.Generated;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class School {
-	 private int id;
-	 private String name;
-	 private String city;
-	 private String rating;
-	 
-	public School(int id, String name, String city, String rating) {
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long id;
+	private String name;
+	private String city;
+	private String rating;
+
+	public School(Long id, String name, String city, String rating) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -14,11 +26,11 @@ public class School {
 		this.rating = rating;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -45,7 +57,5 @@ public class School {
 	public void setRating(String rating) {
 		this.rating = rating;
 	}
-	 
-	
-	 
+
 }

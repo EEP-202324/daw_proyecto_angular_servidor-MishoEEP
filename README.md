@@ -19,3 +19,6 @@ ANGULAR:
 SPRING:
 
 1.	Created the new Maven project with Spring Initializer - school.
+2. Created and passed the forst tests. Created SchoolController, SchoolRepository.
+3. Added dependencies of jpa and mysql.
+4. Connected to MySql databse.
