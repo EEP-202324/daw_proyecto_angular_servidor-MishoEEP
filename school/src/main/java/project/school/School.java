@@ -17,6 +17,9 @@ public class School {
 	private String name;
 	private String city;
 	private String rating;
+	
+	 public School() {
+	    }
 
 	public School(Long id, String name, String city, String rating) {
 		super();
