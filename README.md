@@ -1,4 +1,4 @@
-The application is about Education fair, showin the best schools of Madrid.
+The application is about Education fair, showing the best schools of Madrid.
 
 ANGULAR:
 
@@ -19,6 +19,8 @@ ANGULAR:
 SPRING:
 
 1.	Created the new Maven project with Spring Initializer - school.
-2. Created and passed the forst tests. Created SchoolController, SchoolRepository.
-3. Added dependencies of jpa and mysql.
-4. Connected to MySql databse.
+2. 	Created and passed the forst tests. Created SchoolController, SchoolRepository.
+3. 	Added dependencies of jpa and mysql.
+4. 	Connected to MySql databse.
+5.	Created GET method implementing TTD.
+6.	Created POST method implementing TTD.

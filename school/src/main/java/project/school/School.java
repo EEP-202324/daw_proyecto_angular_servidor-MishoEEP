@@ -1,7 +1,5 @@
 package project.school;
 
-
-
 import jakarta.annotation.Generated;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,14 +10,14 @@ import jakarta.persistence.Id;
 public class School {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String name;
 	private String city;
 	private String rating;
-	
-	 public School() {
-	    }
+
+	public School() {
+	}
 
 	public School(Long id, String name, String city, String rating) {
 		super();

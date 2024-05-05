@@ -36,12 +36,12 @@ class SchoolJsonTest {
 	 @Test
 	 void schoolDeserializationTest() throws IOException {
 	     String expected = """
-	             {
-	                 "id": 1,
+	     		{
+	                "id": 1,
 	     		    "name": "EEP",
 	     		    "city": "Madrid",
 	     			"rating": "7"
-	             }
+	            }
 	             """;
 	     School parsedSchool = json.parseObject(expected);
 	     assertThat(parsedSchool.getId()).isEqualTo(1);
