@@ -24,3 +24,4 @@ SPRING:
 4. 	Connected to MySql databse.
 5.	Created GET method implementing TTD.
 6.	Created POST method implementing TTD.
+7. 	Created findAll method that returns all schools when a list is required. TTD done, test passed.

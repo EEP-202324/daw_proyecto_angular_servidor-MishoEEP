@@ -33,15 +33,27 @@ class SchoolController {
 			return ResponseEntity.notFound().build();
 		}
 	}
+
+	@PostMapping
+	private ResponseEntity<Void> createSchool(@RequestBody School newSchoolRequest, UriComponentsBuilder ucb) {
+		School savedSchool = schoolRepository.save(newSchoolRequest);
+		URI locationOfNewSchool = ucb.path("schools/{id}").buildAndExpand(savedSchool.getId()).toUri();
+		return ResponseEntity.created(locationOfNewSchool).build();
+	}
 	
-	 @PostMapping
-	 private ResponseEntity<Void> createSchool(@RequestBody School newSchoolRequest, UriComponentsBuilder ucb) {
-		 School savedSchool = schoolRepository.save(newSchoolRequest);
-		   URI locationOfNewSchool = ucb
-		            .path("schools/{id}")
-		            .buildAndExpand(savedSchool.getId())
-		            .toUri();
-		   return ResponseEntity.created(locationOfNewSchool).build();
-	 }
+	@GetMapping()
+	private ResponseEntity<Iterable<School>> findAll() {
+	   return ResponseEntity.ok(schoolRepository.findAll());
+	}
+	
+//	@GetMapping
+//	private ResponseEntity<List<School>> findAll(Pageable pageable) {
+//	   Page<School> page = schoolRepository.findAll(
+//	           PageRequest.of(
+//	                   pageable.getPageNumber(),
+//	                   pageable.getPageSize(),
+//	                   pageable.getSortOr(Sort.by(Sort.Direction.DESC, "rating"))));
+//	   return ResponseEntity.ok(page.getContent());
+//	}
 
 }
