@@ -1,8 +1,13 @@
 package project.school;
 
 import java.net.URI;
+import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,19 +46,15 @@ class SchoolController {
 		return ResponseEntity.created(locationOfNewSchool).build();
 	}
 	
-	@GetMapping()
-	private ResponseEntity<Iterable<School>> findAll() {
-	   return ResponseEntity.ok(schoolRepository.findAll());
+	@GetMapping
+	private ResponseEntity<List<School>> findAll(Pageable pageable) {
+	    Page<School> page = schoolRepository.findAll(
+	    		PageRequest.of(
+	                    pageable.getPageNumber(),
+	                    pageable.getPageSize(),
+	                    pageable.getSortOr(Sort.by(Sort.Direction.ASC, "rating"))
+	    ));
+	    return ResponseEntity.ok(page.getContent());
 	}
 	
-//	@GetMapping
-//	private ResponseEntity<List<School>> findAll(Pageable pageable) {
-//	   Page<School> page = schoolRepository.findAll(
-//	           PageRequest.of(
-//	                   pageable.getPageNumber(),
-//	                   pageable.getPageSize(),
-//	                   pageable.getSortOr(Sort.by(Sort.Direction.DESC, "rating"))));
-//	   return ResponseEntity.ok(page.getContent());
-//	}
-
 }

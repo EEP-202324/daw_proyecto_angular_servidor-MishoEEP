@@ -18,7 +18,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
 
@@ -112,6 +111,42 @@ class SchoolApplicationTests {
 	     
 	     JSONArray ratings = documentContext.read("$..rating");
 	     assertThat(ratings).containsExactlyInAnyOrder("7", "9", "5");
+	 }
+	 
+	 @Test
+	 void shouldReturnAPageOfSchools() {
+	     ResponseEntity<String> response = restTemplate.getForEntity("/schools?page=0&size=1", String.class);
+	     assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+
+	     DocumentContext documentContext = JsonPath.parse(response.getBody());
+	     JSONArray page = documentContext.read("$[*]");
+	     assertThat(page.size()).isEqualTo(1);
+	 }
+	 
+	 @Test
+	 void shouldReturnASortedPageOfSchools() {
+	     ResponseEntity<String> response = restTemplate.getForEntity("/schools?page=0&size=1&sort=rating,asc", String.class);
+	     assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+
+	     DocumentContext documentContext = JsonPath.parse(response.getBody());
+	     JSONArray read = documentContext.read("$[*]");
+	     assertThat(read.size()).isEqualTo(1);
+
+	     String rating = documentContext.read("$[0].rating");
+	     assertThat(rating).isEqualTo("5");
+	 }
+	 
+	 @Test
+	 void shouldReturnASortedPageOfSchoolsWithNoParametersAndUseDefaultValues() {
+	     ResponseEntity<String> response = restTemplate.getForEntity("/schools", String.class);
+	     assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+
+	     DocumentContext documentContext = JsonPath.parse(response.getBody());
+	     JSONArray page = documentContext.read("$[*]");
+	     assertThat(page.size()).isEqualTo(3);
+
+	     JSONArray ratings = documentContext.read("$..rating");
+	     assertThat(ratings).containsExactly("5", "7", "9");
 	 }
 
 }
