@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { SchoolsComponent } from './schools/schools.component';
 import { FormsModule } from '@angular/forms';
 import { SchoolDetailComponent } from './school-detail/school-detail.component';
-import { MessagesComponent } from './messages/messages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -18,7 +17,6 @@ import { SchoolSearchComponent } from './school-search/school-search.component';
     AppComponent,
     SchoolsComponent,
     SchoolDetailComponent,
-    MessagesComponent,
     DashboardComponent,
     SchoolSearchComponent,
 

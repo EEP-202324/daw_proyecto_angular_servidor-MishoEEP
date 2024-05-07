@@ -14,6 +14,7 @@ ANGULAR:
 10.	Adding HttpClientModule and simulating a data server with angular-in-memory-web-api so I can make sure everything funcions as it should.
 11.	Adding error handling, also editing the get methods for shchools so they use http requests.
 12. Adding options to update/add/delete and search for schools.
+13. Removed message component (for UX reasons - it looks like loggs).
 
 
 SPRING:
@@ -25,4 +26,7 @@ SPRING:
 5.	Created GET method implementing TTD.
 6.	Created POST method implementing TTD.
 7. 	Created findAll method that returns all schools when a list is required. TTD done, test passed.
-8.	Implemented Pagination and Sorting (by rating - ascending).
+8.	Implemented Pagination.
+9.	Changed rating atribute from String to int.
+10.	Implemented delete method, implementing TTD.
+11.	Made sure everything works with SWAGGER.

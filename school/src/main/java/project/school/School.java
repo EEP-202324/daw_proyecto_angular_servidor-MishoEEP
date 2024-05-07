@@ -13,12 +13,12 @@ public class School {
 	private Long id;
 	private String name;
 	private String city;
-	private String rating;
+	private Integer rating;
 
 	public School() {
 	}
 
-	public School(Long id, String name, String city, String rating) {
+	public School(Long id, String name, String city, Integer rating) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -50,11 +50,11 @@ public class School {
 		this.city = city;
 	}
 
-	public String getRating() {
+	public Integer getRating() {
 		return rating;
 	}
 
-	public void setRating(String rating) {
+	public void setRating(Integer rating) {
 		this.rating = rating;
 	}
 

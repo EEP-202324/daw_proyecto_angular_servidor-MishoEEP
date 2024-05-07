@@ -9,11 +9,8 @@
 
   <label for="school-rating">Rating:</label>
   <input id="school-rating" #schoolRating />
-  <!-- <button type="button" class="add-button" (click)="add(schoolName.value); schoolName.value=''">
-    Add school
-  </button> -->
   <button type="button" class="add-button"
-          (click)="add(schoolName.value, schoolCity.value, schoolRating.value);
+          (click)="add(schoolName.value, schoolCity.value, +schoolRating.value);
             schoolName.value=''; schoolCity.value=''; schoolRating.value=''">
     Add school
   </button>

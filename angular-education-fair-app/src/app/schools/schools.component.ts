@@ -36,16 +36,14 @@ export class SchoolsComponent implements OnInit{
   // }
 
 
-  add(name: string, city: string, rating: string): void {
+  add(name: string, city: string, rating: number): void {
     // Trim the input values to ensure clean data entry
     name = name.trim();
     city = city.trim();
-    rating = rating.trim(); // Adjust if rating is a numerical value, and conversion is needed.
 
-    // Check if any of the fields are empty after trimming
-    if (!name || !city || !rating) { return; }
+    if (!name || !city || rating == null) { return; }
+    // if (!name || !city || !rating) { return; }
 
-    // Create a new object with all fields, assuming your School interface includes these.
     this.schoolService.addSchool({ name, city, rating } as School)
       .subscribe(school => {
         this.schools.push(school);
