@@ -26,30 +26,20 @@ export class SchoolsComponent implements OnInit{
       .subscribe(schools => this.schools = schools);
   }
 
-  // add(name: string): void {
-  //   name = name.trim();
-  //   if (!name) { return; }
-  //   this.schoolService.addSchool({ name } as School)
-  //     .subscribe(school => {
-  //       this.schools.push(school);
-  //     });
-  // }
-
 
   add(name: string, city: string, rating: number): void {
-    // Trim the input values to ensure clean data entry
     name = name.trim();
     city = city.trim();
 
-    if (!name || !city || rating == null) { return; }
-    // if (!name || !city || !rating) { return; }
-
+    if (!name || !city || rating == null) {
+      console.error('Invalid input: All fields are required');
+      return;
+    }
     this.schoolService.addSchool({ name, city, rating } as School)
-      .subscribe(school => {
-        this.schools.push(school);
+      .subscribe(responce => {
+        this.getSchools();
       });
-}
-
+  }
 
   delete(school: School): void {
     this.schools = this.schools.filter(s => s !== school);

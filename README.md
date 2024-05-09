@@ -30,3 +30,7 @@ SPRING:
 9.	Changed rating atribute from String to int.
 10.	Implemented delete method, implementing TTD.
 11.	Made sure everything works with SWAGGER.
+
+
+FINAL APP:
+1.	Connected Spring and Angular, made sure everything works as it should.

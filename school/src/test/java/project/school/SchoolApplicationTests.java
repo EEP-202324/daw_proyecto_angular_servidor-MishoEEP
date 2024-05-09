@@ -126,36 +126,36 @@ class SchoolApplicationTests {
 	     assertThat(page.size()).isEqualTo(1);
 	 }
 	 
-//	 @Test
-//	 void shouldReturnASortedPageOfSchools() {
-//	     ResponseEntity<String> response = restTemplate.getForEntity("/schools?page=0&size=1&sort=rating,asc", String.class);
-//	     assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-//
-//	     DocumentContext documentContext = JsonPath.parse(response.getBody());
-//	     JSONArray read = documentContext.read("$[*]");
-//	     assertThat(read.size()).isEqualTo(1);
-//
-//	     Integer rating = documentContext.read("$[0].rating");
-//	     assertThat(rating).isEqualTo(5);
-//	 }
+	 @Test
+	 void shouldReturnASortedPageOfSchools() {
+	     ResponseEntity<String> response = restTemplate.getForEntity("/schools?page=0&size=1&sort=rating,asc", String.class);
+	     assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+
+	     DocumentContext documentContext = JsonPath.parse(response.getBody());
+	     JSONArray read = documentContext.read("$[*]");
+	     assertThat(read.size()).isEqualTo(1);
+
+	     Integer rating = documentContext.read("$[0].rating");
+	     assertThat(rating).isEqualTo(5);
+	 }
 	 
-//	 @Test
-//	 void shouldReturnASortedPageOfSchoolsWithNoParametersAndUseDefaultValues() {
-//	     ResponseEntity<String> response = restTemplate.getForEntity("/schools", String.class);
-//	     assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-//
-//	     DocumentContext documentContext = JsonPath.parse(response.getBody());
-//	     JSONArray page = documentContext.read("$[*]");
-//	     assertThat(page.size()).isEqualTo(3);
-//
-//	     JSONArray ratings = documentContext.read("$..rating");
-//	     assertThat(ratings).containsExactly(5, 7, 9);
-//	 }
+	 @Test
+	 void shouldReturnASortedPageOfSchoolsWithNoParametersAndUseDefaultValues() {
+	     ResponseEntity<String> response = restTemplate.getForEntity("/schools", String.class);
+	     assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+
+	     DocumentContext documentContext = JsonPath.parse(response.getBody());
+	     JSONArray page = documentContext.read("$[*]");
+	     assertThat(page.size()).isEqualTo(3);
+
+	     JSONArray ratings = documentContext.read("$..rating");
+	     assertThat(ratings).containsExactly(5, 7, 9);
+	 }
 	 
 	 @Test
 	 @DirtiesContext
 	 void shouldUpdateAnExistingSchool() {
-		    School schoolUpdate = new School(null, null, null, 8);
+		    School schoolUpdate = new School(null , "", "", 8);
 		    HttpEntity<School> request = new HttpEntity<>(schoolUpdate);
 		    ResponseEntity<Void> response = restTemplate.exchange("/schools/1", HttpMethod.PUT, request, Void.class);
 		    assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);

@@ -37,8 +37,8 @@ class SchoolController {
 	    Page<School> page = schoolRepository.findAll(
 	    		PageRequest.of(
 	                    pageable.getPageNumber(),
-	                    pageable.getPageSize()
-//	                    pageable.getSortOr(Sort.by(Sort.Direction.ASC, "name"))
+	                    pageable.getPageSize(),
+	                    pageable.getSortOr(Sort.by(Sort.Direction.ASC, "rating"))
 	    ));
 	    return ResponseEntity.ok(page.getContent());
 	}
@@ -76,13 +76,13 @@ class SchoolController {
 	    if (schoolOptional.isPresent()) {
 	        School existingSchool = schoolOptional.get();
 
-	        if (schoolUpdate.getName() != null) {
+	        if (!"".equals(schoolUpdate.getName())) {
 	            existingSchool.setName(schoolUpdate.getName());
 	        }
-	        if (schoolUpdate.getCity() != null) {
+	        if (!"".equals(schoolUpdate.getCity())) {
 	            existingSchool.setCity(schoolUpdate.getCity());
 	        }
-	        if (schoolUpdate.getRating() != null) {
+	        if (schoolUpdate.getRating() != null && schoolUpdate.getRating() != 0) {
 	            existingSchool.setRating(schoolUpdate.getRating());
 	        }
 
