@@ -13,11 +13,20 @@ export class SchoolService {
     private http: HttpClient,
     private messageService: MessageService) { }
 
-  getSchools(): Observable<School[]> {
-    return this.http.get<School[]>(this.schoolsUrl)
+  // getSchools(): Observable<School[]> {
+  //   return this.http.get<School[]>(this.schoolsUrl)
+  //     .pipe(
+  //       tap(_ => this.log('fetched schools')),
+  //       catchError(this.handleError<School[]>(`this.getSchools`, []))
+  //     );
+  // }
+
+  getSchools(page: number = 0, size: number = 3): Observable<any> {
+    const url = `${this.schoolsUrl}?page=${page}&size=${size}`;
+    return this.http.get<any>(url)
       .pipe(
         tap(_ => this.log('fetched schools')),
-        catchError(this.handleError<School[]>(`this.getSchools`, []))
+        catchError(this.handleError<any>('getSchools', {content: [], totalElements: 0}))
       );
   }
 
@@ -35,10 +44,9 @@ export class SchoolService {
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      return of(result as T)
       console.error(error);
       this.log(`${operation} failed: ${error.message}`);
-      ;
+      return of(result as T);
     };
   }
 
@@ -48,10 +56,10 @@ export class SchoolService {
       catchError(this.handleError<any>('updateSchool'))
     );
   }
-  addSchool(school: School): Observable<School> {
+  addSchool(school: School): Observable<any> {
     return this.http.post<School>(this.schoolsUrl, school, this.httpOptions).pipe(
-      tap((newSchool: School) => this.log(`added school w/ id=${newSchool.id}`)),
-      catchError(this.handleError<School>('addSchool'))
+      tap(_ => this.log(`added school w/ id=${school.id}`)),
+      catchError(this.handleError<any>('addSchool'))
     );
   }
 
