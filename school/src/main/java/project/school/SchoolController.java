@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -38,7 +39,7 @@ class SchoolController {
 	    		PageRequest.of(
 	                    pageable.getPageNumber(),
 	                    pageable.getPageSize(),
-	                    pageable.getSortOr(Sort.by(Sort.Direction.ASC, "rating"))
+	                    pageable.getSortOr(Sort.by(Sort.Direction.DESC, "rating"))
 	    ));
 	    return ResponseEntity.ok(page.getContent());
 	}
@@ -59,16 +60,7 @@ class SchoolController {
 		URI locationOfNewSchool = ucb.path("schools/{id}").buildAndExpand(savedSchool.getId()).toUri();
 		return ResponseEntity.created(locationOfNewSchool).build();
 	}
-	
-	
-//	@PutMapping("/{requestedId}")
-//	private ResponseEntity<Void> putSchool(@PathVariable Long requestedId, @RequestBody School schoolUpdate) {
-//	School school = schoolRepository.findById(requestedId);
-//	    School updatedSchool = new School(school.getId(), school.getName(), school.getCity(), school.getRating());
-//	    schoolRepository.save(updatedSchool);
-//	    return ResponseEntity.noContent().build();
-//	}
-	
+
 	@PutMapping("/{requestedId}")
 	private ResponseEntity<Void> putSchool(@PathVariable Long requestedId, @RequestBody School schoolUpdate) {
 	    Optional<School> schoolOptional = schoolRepository.findById(requestedId);
@@ -102,5 +94,12 @@ class SchoolController {
 		return ResponseEntity.noContent().build();
 	}
 	
-
+	@GetMapping("/search")
+	private ResponseEntity<List<School>> searchSchools(@RequestParam("name") String name) {
+	    if (name == null || name.trim().isEmpty()) {
+	        return ResponseEntity.ok(List.of());
+	    }
+	    List<School> schools = schoolRepository.findByNameContainingIgnoreCase(name);
+	    return ResponseEntity.ok(schools);
+	}
 }

@@ -5,13 +5,14 @@
   margin: 2em auto; /* Centers the component horizontally and adds vertical spacing */
 }
 
-label {
+#search-component label {
   display: block;
   font-weight: bold;
   font-size: 1.2rem;
   margin-top: 1rem;
   margin-bottom: .5rem;
   text-align: center; /* Center the label text */
+  color: #444; /* Set the color to #444 */
 }
 
 input {
@@ -40,6 +41,7 @@ ul.search-result {
   padding: .5rem;
   text-decoration: none;
   color: black;
+  background-color: white;
   text-align: left; /* Ensures text alignment within each list item */
 }
 
@@ -48,3 +50,4 @@ ul.search-result {
   color: white;
   transition: background-color 0.3s; /* Smooth transition for hover effect */
 }
+

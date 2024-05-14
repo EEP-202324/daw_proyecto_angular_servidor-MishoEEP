@@ -10,12 +10,15 @@
   <label for="school-rating">Rating:</label>
   <input id="school-rating" #schoolRating />
   <button type="button" class="add-button"
-          (click)="add(schoolName.value, schoolCity.value, +schoolRating.value);
+          (click)="addSchoolWithMessage(schoolName.value, schoolCity.value, +schoolRating.value);
             schoolName.value=''; schoolCity.value=''; schoolRating.value=''">
     Add school
   </button>
+  <div *ngIf="showSuccessMessage" class="success-message">
+    School successfully added!
+  </div>
 </div>
-
+<div class="list">
 <ul class="schools">
   <li *ngFor="let school of schools">
     <a routerLink="/detail/{{school.id}}">
@@ -26,9 +29,10 @@
       (click)="delete(school)">Delete</button>
   </li>
 </ul>
-<div>
-  <button type="button" (click)="previousPage()" [disabled]="page === 0">Previous</button>
-  <button type="button" (click)="nextPage()" [disabled]="schools.length < size">Next</button>
+</div>
+<div class="pagination">
+  <button type="button" class="page-button" (click)="previousPage()" [disabled]="page === 0">Previous</button>
+  <button type="button" class="page-button" (click)="nextPage()" [disabled]="schools.length < size">Next</button>
 </div>
 
 

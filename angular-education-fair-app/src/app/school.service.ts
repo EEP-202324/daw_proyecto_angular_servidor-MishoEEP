@@ -13,15 +13,7 @@ export class SchoolService {
     private http: HttpClient,
     private messageService: MessageService) { }
 
-  // getSchools(): Observable<School[]> {
-  //   return this.http.get<School[]>(this.schoolsUrl)
-  //     .pipe(
-  //       tap(_ => this.log('fetched schools')),
-  //       catchError(this.handleError<School[]>(`this.getSchools`, []))
-  //     );
-  // }
-
-  getSchools(page: number = 0, size: number = 3): Observable<any> {
+  getSchools(page: number = 0, size: number = 5): Observable<any> {
     const url = `${this.schoolsUrl}?page=${page}&size=${size}`;
     return this.http.get<any>(url)
       .pipe(
@@ -73,13 +65,22 @@ export class SchoolService {
   }
 
   searchSchools(term: string): Observable<School[]> {
+    console.log('Starting the search', term);
     if (!term.trim()) {
+      console.log('searchSchools: term is empty');
       return of([]);
     }
-    return this.http.get<School[]>(`${this.schoolsUrl}?name=${term}`).pipe(
-      tap(x => x.length ?
-         this.log(`found schools matching "${term}"`) :
-         this.log(`no schools matching "${term}"`)),
+    const url = `${this.schoolsUrl}/search?name=${term}`;
+    console.log(`searchSchools: URL = ${url}`);
+    return this.http.get<School[]>(url).pipe(
+      tap(x => {
+        console.log(`searchSchools: response = `, x);
+        if (x.length) {
+          this.log(`found schools matching "${term}"`);
+        } else {
+          this.log(`no schools matching "${term}"`);
+        }
+      }),
       catchError(this.handleError<School[]>('searchSchools', []))
     );
   }

@@ -16,6 +16,9 @@
     <label for="school-rating">Rating:</label>
     <input id="school-rating" [(ngModel)]="school.rating" placeholder="Rating" type="number"/>
   </div>
-  <button type="button" (click)="goBack()">Back</button>
   <button type="button" (click)="save()">Save</button>
+  <button type="button" (click)="deleteSchool()">Delete</button>
+  <button type="button" (click)="goBack()">Back</button>
+  <div *ngIf="showDeleteMessage" class="success-message">Successfully deleted!</div>
+  <div *ngIf="showSavedMessage" class="success-message">Successfully saved!</div>
 </div>

@@ -34,3 +34,4 @@ SPRING:
 
 FINAL APP:
 1.	Connected Spring and Angular, made sure everything works as it should.
+2.	Implemented Pagination in the app.

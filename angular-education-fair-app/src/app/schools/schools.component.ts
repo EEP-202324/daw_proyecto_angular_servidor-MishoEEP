@@ -13,8 +13,9 @@ import { MessageService } from '../message.service';
 export class SchoolsComponent implements OnInit{
 
    schools: School[] = [];
+  showSuccessMessage: boolean = false;
    page: number = 0;
-   size: number = 3;
+   size: number = 4;
    totalSchools: number = 0;
 
   constructor(private schoolService: SchoolService, private messageService: MessageService) {}
@@ -24,38 +25,26 @@ export class SchoolsComponent implements OnInit{
     this.getSchools();
   }
 
-  // getSchools(): void {
-  //   this.schoolService.getSchools()
-  //     .subscribe(schools => this.schools = schools);
-  // }
-
   getSchools(): void {
     this.schoolService.getSchools(this.page, this.size)
     .subscribe(schools => this.schools = schools);
-        // this.schools = data.content;
-        // this.totalSchools = data.totalElements;});
   }
 
-
-  add(name: string, city: string, rating: number): void {
-    name = name.trim();
-    city = city.trim();
-
-    if (!name || !city || rating == null) {
-      // alert('Please fill all the fields');
-      return;
-    }
+  addSchoolWithMessage(name: string, city: string, rating: number): void {
     this.schoolService.addSchool({ name, city, rating } as School)
       .subscribe(responce => {
         this.getSchools();
-        // alert('Added successfully!');
+        this.showSuccessMessage = true;
+        setTimeout(() => {
+          this.showSuccessMessage = false;
+        }, 3000); // Hide the message after 3 seconds
       });
   }
+
 
   delete(school: School): void {
     this.schools = this.schools.filter(s => s !== school);
     this.schoolService.deleteSchool(school.id).subscribe();
-    // alert('School has been successfully deleted');
   }
 
   nextPage(): void {
@@ -64,9 +53,9 @@ export class SchoolsComponent implements OnInit{
   }
 
   previousPage(): void {
-    this.page = Math.max(0, this.page - 1);
-    this.getSchools();
+    if (this.page > 0) {
+      this.page--;
+      this.getSchools();
+    }
   }
 }
-
-
