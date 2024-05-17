@@ -63,18 +63,13 @@ export class SchoolService {
       catchError(this.handleError<School>('deleteSchool'))
     );
   }
-
   searchSchools(term: string): Observable<School[]> {
-    console.log('Starting the search', term);
     if (!term.trim()) {
-      console.log('searchSchools: term is empty');
       return of([]);
     }
     const url = `${this.schoolsUrl}/search?name=${term}`;
-    console.log(`searchSchools: URL = ${url}`);
     return this.http.get<School[]>(url).pipe(
       tap(x => {
-        console.log(`searchSchools: response = `, x);
         if (x.length) {
           this.log(`found schools matching "${term}"`);
         } else {

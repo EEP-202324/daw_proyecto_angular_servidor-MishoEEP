@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-
 @RestController
 @RequestMapping("/schools")
 @CrossOrigin
@@ -32,16 +31,12 @@ class SchoolController {
 	private SchoolController(SchoolRepository schoolRepository) {
 		this.schoolRepository = schoolRepository;
 	}
-	
+
 	@GetMapping
 	private ResponseEntity<List<School>> findAll(Pageable pageable) {
-	    Page<School> page = schoolRepository.findAll(
-	    		PageRequest.of(
-	                    pageable.getPageNumber(),
-	                    pageable.getPageSize(),
-	                    pageable.getSortOr(Sort.by(Sort.Direction.DESC, "rating"))
-	    ));
-	    return ResponseEntity.ok(page.getContent());
+		Page<School> page = schoolRepository.findAll(PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
+				pageable.getSortOr(Sort.by(Sort.Direction.DESC, "rating"))));
+		return ResponseEntity.ok(page.getContent());
 	}
 
 	@GetMapping("/{requestedId}")
@@ -63,43 +58,43 @@ class SchoolController {
 
 	@PutMapping("/{requestedId}")
 	private ResponseEntity<Void> putSchool(@PathVariable Long requestedId, @RequestBody School schoolUpdate) {
-	    Optional<School> schoolOptional = schoolRepository.findById(requestedId);
+		Optional<School> schoolOptional = schoolRepository.findById(requestedId);
 
-	    if (schoolOptional.isPresent()) {
-	        School existingSchool = schoolOptional.get();
+		if (schoolOptional.isPresent()) {
+			School existingSchool = schoolOptional.get();
 
-	        if (!"".equals(schoolUpdate.getName())) {
-	            existingSchool.setName(schoolUpdate.getName());
-	        }
-	        if (!"".equals(schoolUpdate.getCity())) {
-	            existingSchool.setCity(schoolUpdate.getCity());
-	        }
-	        if (schoolUpdate.getRating() != null && schoolUpdate.getRating() != 0) {
-	            existingSchool.setRating(schoolUpdate.getRating());
-	        }
+			if (!"".equals(schoolUpdate.getName())) {
+				existingSchool.setName(schoolUpdate.getName());
+			}
+			if (!"".equals(schoolUpdate.getCity())) {
+				existingSchool.setCity(schoolUpdate.getCity());
+			}
+			if (schoolUpdate.getRating() != null && schoolUpdate.getRating() != 0) {
+				existingSchool.setRating(schoolUpdate.getRating());
+			}
 
-	        schoolRepository.save(existingSchool);
-	        return ResponseEntity.noContent().build();
-	    } else {
-	        return ResponseEntity.notFound().build();
-	    }
+			schoolRepository.save(existingSchool);
+			return ResponseEntity.noContent().build();
+		} else {
+			return ResponseEntity.notFound().build();
+		}
 	}
-	
+
 	@DeleteMapping("/{id}")
 	private ResponseEntity<Void> deleteSchool(@PathVariable Long id) {
 		if (!schoolRepository.existsById(id)) {
-	        return ResponseEntity.notFound().build();
-	    }
+			return ResponseEntity.notFound().build();
+		}
 		schoolRepository.deleteById(id);
 		return ResponseEntity.noContent().build();
 	}
-	
+
 	@GetMapping("/search")
 	private ResponseEntity<List<School>> searchSchools(@RequestParam("name") String name) {
-	    if (name == null || name.trim().isEmpty()) {
-	        return ResponseEntity.ok(List.of());
-	    }
-	    List<School> schools = schoolRepository.findByNameContainingIgnoreCase(name);
-	    return ResponseEntity.ok(schools);
+		if (name == null || name.trim().isEmpty()) {
+			return ResponseEntity.ok(List.of());
+		}
+		List<School> schools = schoolRepository.findByNameContainingIgnoreCase(name);
+		return ResponseEntity.ok(schools);
 	}
 }

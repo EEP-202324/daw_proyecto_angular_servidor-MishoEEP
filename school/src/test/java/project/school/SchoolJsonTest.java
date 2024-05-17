@@ -60,7 +60,7 @@ class SchoolJsonTest {
 	}
 
 	@Test
-	void cashCardListSerializationTest() throws IOException {
+	void schoolListSerializationTest() throws IOException {
 		assertThat(jsonList.write(schools)).isStrictlyEqualToJson("list.json");
 	}
 }

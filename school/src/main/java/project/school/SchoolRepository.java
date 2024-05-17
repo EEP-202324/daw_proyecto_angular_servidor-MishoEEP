@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SchoolRepository extends CrudRepository<School, Long>, PagingAndSortingRepository<School, Long> {
 
-	  @Query("SELECT s FROM School s WHERE LOWER(s.name) LIKE LOWER(CONCAT('%', :name, '%'))")
-	    List<School> findByNameContainingIgnoreCase(@Param("name") String name);
-	
+	@Query("SELECT s FROM School s WHERE LOWER(s.name) LIKE LOWER(CONCAT('%', :name, '%'))")
+	List<School> findByNameContainingIgnoreCase(@Param("name") String name);
+
 }
