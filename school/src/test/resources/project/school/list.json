@@ -1,0 +1,5 @@
+[
+  {"id": 1, "name": "EEP", "city": "Madrid", "rating": 7 },
+  {"id": 2, "name": "ESNE", "city": "Madrid", "rating": 9 },
+  {"id": 3, "name": "CESUR", "city": "Madrid", "rating": 5 }
+]

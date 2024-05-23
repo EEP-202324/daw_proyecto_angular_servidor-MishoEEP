@@ -1,0 +1,69 @@
+.details {
+  margin: 2em auto; /* Center the content like the schools list */
+  padding: 2em;
+  width: 100%;
+  max-width: 500px; /* Consistency in width as the school list */
+  background-color: #f9f9f9; /* Background color for the whole details section */
+  border-radius: 4px;
+  border: 2px solid #cfd8dc; /* Borders to match the school list style */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional: Adds depth with a subtle shadow */
+}
+
+.info-group {
+  margin-bottom: 1rem;
+  padding: 0.5em; /* Uniform padding around items */
+}
+
+.label, .info, input {
+  display: block; /* Ensures each is on its own line for clarity */
+  color: #435960;
+  font-size: 1em;
+}
+
+.label {
+  font-weight: bold; /* Bold labels for clear identification */
+  margin-bottom: 0.5rem; /* Space between label and info */
+}
+
+.info, input {
+  padding: 0.5em; /* Padding inside the info spans for visual comfort */
+  background-color: #eef1f4; /* Slightly different background to distinguish from editable areas */
+  border-radius: 4px; /* Rounded corners for the information displays */
+  border: 2px solid #cfd8dc;
+  width: calc(100% - 1em); /* Adjusting width accounting for padding */
+  box-sizing: border-box; /* Include padding and border in the element's total width */
+}
+
+input {
+  background-color: #ffffff; /* Make input fields stand out as editable */
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.05); /* Subtle inner shadow to indicate editability */
+  cursor: text; /* Cursor indicates it's a text field */
+}
+
+button {
+  display: block;
+  margin: 20px auto; /* Center button horizontally */
+  background-color: #eee; /* Consistent with other styling */
+  padding: 1rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 50%; /* Button width to not span the entire width of its container */
+  cursor: pointer;
+}
+
+button:hover {
+  background-color:  #435A60;
+}
+
+button:disabled {
+  background-color: #eee;
+  color: #ccc;
+  cursor: auto;
+}
+
+.success-message {
+  text-align: center;
+  color: red;
+  font-size: small;
+  margin-top: 10px;
+}

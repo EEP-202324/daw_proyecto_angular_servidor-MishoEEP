@@ -1,0 +1,38 @@
+<h2>Top Schools</h2>
+
+<div>
+  <label for="school-name">School name:</label>
+  <input id="school-name" #schoolName />
+
+  <label for="city-name">City name:</label>
+  <input id="city-name" #schoolCity />
+
+  <label for="school-rating">Rating:</label>
+  <input id="school-rating" #schoolRating />
+  <button type="button" class="add-button"
+          (click)="addSchoolWithMessage(schoolName.value, schoolCity.value, +schoolRating.value);
+            schoolName.value=''; schoolCity.value=''; schoolRating.value=''">
+    Add school
+  </button>
+  <div *ngIf="showSuccessMessage" class="success-message">
+    School successfully added!
+  </div>
+</div>
+<div class="list">
+<ul class="schools">
+  <li *ngFor="let school of schools">
+    <a routerLink="/detail/{{school.id}}">
+      <span class="badge">{{ school.id }}</span>
+      <span class="name">{{ school.name }}</span>
+    </a>
+    <button type="button" class="delete" title="delete school"
+      (click)="delete(school)">Delete</button>
+  </li>
+</ul>
+</div>
+<div class="pagination">
+  <button type="button" class="page-button" (click)="previousPage()" [disabled]="page === 0">Previous</button>
+  <button type="button" class="page-button" (click)="nextPage()" [disabled]="schools.length < size">Next</button>
+</div>
+
+
